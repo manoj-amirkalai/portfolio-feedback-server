@@ -39,7 +39,6 @@ const getFeedback = async (req, res) => {
     const feedbackform = await Feedback.find();
     if (!feedbackform) return res.status(404).json({ message: "Not found" });
     const count = feedbackform.length + 1;
-    console.log("count", count);
 
     const id = "66cec8029f09bd6ae0d6d136";
     const data = await Feedbackform.findByIdAndUpdate(id, {
@@ -47,8 +46,7 @@ const getFeedback = async (req, res) => {
     });
     if (!data) return res.status(404).json({ message: "Not found" });
 
-    console.log("countup", data.submitted);
-    return;
+    return res.status(200).json({ message: "Success" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
