@@ -14,6 +14,26 @@ const getFeedbackform = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+const updateCount = async (req, res) => {
+  const id = "66cec8029f09bd6ae0d6d136";
+  const feedbackform = await Feedbackform.findById(id);
+  if (!feedbackform) return res.status(404).json({ message: "Not found" });
+
+  const count = feedbackform.viewed + 1;
+  try {
+    const feedbackform = await Feedbackform.findByIdAndUpdate(id, {
+      viewed: count,
+    });
+    if (!feedbackform) return res.status(404).json({ message: "Not found" });
+    res.status(200).json({ feedbackform });
+  } catch (error) {
+    if (error.name === "CastError" && error.kind == "ObjectId") {
+      return res.status(400).json({ message: "Invalid ID" });
+    }
+    res.status(500).json({ message: error.message });
+  }
+};
 const createFeedback = async (req, res) => {
   const {
     formid,
@@ -43,4 +63,4 @@ const createFeedback = async (req, res) => {
   }
 };
 
-export { getFeedbackform, createFeedback };
+export { getFeedbackform, createFeedback, updateCount };
