@@ -34,6 +34,25 @@ const updateCount = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+const getFeedback = async (req, res) => {
+  try {
+    const feedbackform = await Feedback.find();
+    if (!feedbackform) return res.status(404).json({ message: "Not found" });
+    const count = feedbackform.length + 1;
+    console.log("count", count);
+
+    const id = "66cec8029f09bd6ae0d6d136";
+    const data = await Feedbackform.findByIdAndUpdate(id, {
+      submitted: count,
+    });
+    if (!data) return res.status(404).json({ message: "Not found" });
+
+    console.log("countup", data.submitted);
+    return;
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 const createFeedback = async (req, res) => {
   const {
     formid,
@@ -63,4 +82,4 @@ const createFeedback = async (req, res) => {
   }
 };
 
-export { getFeedbackform, createFeedback, updateCount };
+export { getFeedbackform, createFeedback, updateCount, getFeedback };
