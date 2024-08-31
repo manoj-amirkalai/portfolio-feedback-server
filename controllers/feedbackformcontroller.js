@@ -38,7 +38,7 @@ const getFeedback = async (req, res) => {
   try {
     const feedbackform = await Feedback.find();
     if (!feedbackform) return res.status(404).json({ message: "Not found" });
-    const count = feedbackform.length + 1;
+    const count = feedbackform.length;
 
     const id = "66cec8029f09bd6ae0d6d136";
     const data = await Feedbackform.findByIdAndUpdate(id, {
