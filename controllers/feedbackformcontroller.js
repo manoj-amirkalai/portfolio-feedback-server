@@ -2,7 +2,7 @@ import Feedbackform from "../model/feedbackform.js";
 import Feedback from "../model/feedback.js";
 
 const getFeedbackform = async (req, res) => {
-  const id = "66cec8029f09bd6ae0d6d136";
+  const id = "66d543095597ddd377d3b77b";
   try {
     const feedbackform = await Feedbackform.findById(id);
     if (!feedbackform) return res.status(404).json({ message: "Not found" });
@@ -16,7 +16,7 @@ const getFeedbackform = async (req, res) => {
 };
 
 const updateCount = async (req, res) => {
-  const id = "66cec8029f09bd6ae0d6d136";
+  const id = "66d543095597ddd377d3b77b";
   const feedbackform = await Feedbackform.findById(id);
   if (!feedbackform) return res.status(404).json({ message: "Not found" });
 
@@ -40,7 +40,7 @@ const getFeedback = async (req, res) => {
     if (!feedbackform) return res.status(404).json({ message: "Not found" });
     const count = feedbackform.length;
 
-    const id = "66cec8029f09bd6ae0d6d136";
+    const id = "66d543095597ddd377d3b77b";
     const data = await Feedbackform.findByIdAndUpdate(id, {
       submitted: count,
     });
@@ -65,7 +65,7 @@ const createFeedback = async (req, res) => {
 
   try {
     const feedback = await Feedback.create({
-      formid: "66cec8029f09bd6ae0d6d136",
+      formid: "66d543095597ddd377d3b77b",
       textarea: textarea,
       numberrating: numberrating,
       smile: smile,
